@@ -104,7 +104,7 @@ result of query (token will be other )
 }
 ```
 
-copy token in tab "HTTP HEADERS" (copy and past result of previuos query)
+open new tab for authonticated query and copy token in "HTTP HEADERS" tab section below query  (copy and past result of previuos query)
 ```gql
 {
     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1Zjg1OTk5MTkzZTUxODZlNWFlMWM4ZmQiLCJ1c2VybmFtZSI6IkJvbmQiLCJpYXQiOjE2MDI1OTExMzUsImV4cCI6MTYwMjY3NzUzNX0.Q1GXKXV2tWf3_xDxdP3HstLcXHRUaLCVNUpdalsmeKA"
