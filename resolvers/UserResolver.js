@@ -27,7 +27,7 @@ module.exports = {
   Query: {
     getUsers2: async (_, args, { User,currentUser }) => {
        if (!currentUser) {
-        throw new Error('Access error: Authorization required!')
+        throw new Error('Access error: Authentication required!')
       } 
       const users = await User.find({}).sort({ createdDate: "desc" })
 
@@ -69,10 +69,9 @@ module.exports = {
     signUp: async (_, { username, password, avatar }, { User }) => {
       const user = await User.findOne({ username })
       
-      if (user) {
-        //throw new Error(`This user '${username}' already exists`)
-        throw new UserInputError('User input arguments are invalid', {
-              invalidArgs: username,
+      if (user) {        
+        throw new UserInputError(`This user '${username}' already exists`, {
+              invalidArgs: username
             })
       }
 

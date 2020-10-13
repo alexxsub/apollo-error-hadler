@@ -34,13 +34,13 @@ const getUser = async (token, signin) => {
       return await jwt.verify(token, process.env.SECRET)
     } catch (err) {
       throw new AuthenticationError(
-        'Authorization error: Please login again!'
+        'Authentication error: Please login again!'
       )
     }
   }
   else {
     throw new AuthenticationError(
-      'Authorization error: You are not logged in!'
+      'Authentication error: You are not logged in!'
     );
   }
 };
@@ -51,11 +51,11 @@ const getUser = async (token, signin) => {
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-  tracing: true,
   formatError: (error) => {
     const rep = new Map([
       ["GraphQL error:", ""],
-      ["Context creation failed:", ""],      
+      ["Context creation failed:", ""],  
+      ["ENOENT:", ""], 
     ])
     const {message} = error
     rep.forEach((val,key) =>{ 
