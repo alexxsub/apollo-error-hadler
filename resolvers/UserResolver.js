@@ -9,11 +9,21 @@ const createToken = (user, secret, expiresIn) => {
 
 module.exports = {
   User: {
+    password: (rec,_,{currentUser}) => {
+      
+      if (currentUser.username=='Bond') {
+       return rec.password
+        
+      } else {
+        return '*censored*'
+      }
+    },
     createdDate: (rec) => {
       let d = new Date(String(rec.createdDate))
       return d.toLocaleString()
     },
   },
+    
   Query: {
     getUsers2: async (_, args, { User,currentUser }) => {
        if (!currentUser) {
