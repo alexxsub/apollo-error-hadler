@@ -72,7 +72,7 @@ mutation userInputError {
 }
 ```
 
-queries to tect autentication
+queries to test autentication
 
 add new user, for example - bill, input your name or other
 ```gql
