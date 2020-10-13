@@ -36,7 +36,7 @@ npm run server
 ```
 open url in browser to GraphQL playground [http://localhost:4005/api](http://localhost:4005/api)
 
-### Sample queries in GraphQL playground
+### Sample queries in GraphQL playground (run query in own tab)
 get client ip 
 
 ```gql
@@ -69,5 +69,55 @@ user input error (expected - good result, other string - error)
 ```gql
 mutation userInputError {
   userInputError(input: "expected")
+}
+```
+
+queries to tect autentication
+
+add new user, for example - bill, input your name or other
+```gql
+mutation signUp {
+  signUp(
+    username:"bill",
+    password:"123"
+  ) {
+    username
+  } 
+}
+```
+signin user
+```gql
+mutation signIn {
+  signIn(username: "bill", password: "123") {
+    token
+  }
+}
+```
+result of query (token will be other )
+```gql
+{
+  "data": {
+    "signIn": {
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1Zjg1OTk5MTkzZTUxODZlNWFlMWM4ZmQiLCJ1c2VybmFtZSI6IkJvbmQiLCJpYXQiOjE2MDI1OTExMzUsImV4cCI6MTYwMjY3NzUzNX0.Q1GXKXV2tWf3_xDxdP3HstLcXHRUaLCVNUpdalsmeKA"
+    }
+  }
+}
+```
+
+copy token in tab "HTTP HEADERS" (copy and past result of previuos query)
+```gql
+{
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1Zjg1OTk5MTkzZTUxODZlNWFlMWM4ZmQiLCJ1c2VybmFtZSI6IkJvbmQiLCJpYXQiOjE2MDI1OTExMzUsImV4cCI6MTYwMjY3NzUzNX0.Q1GXKXV2tWf3_xDxdP3HstLcXHRUaLCVNUpdalsmeKA"
+}
+```
+You are authenticated!
+run query (withaout authentication query return unauthenticated error)
+```gql
+{
+  getUsers {
+    username
+    password
+    createdDate
+  }
 }
 ```
