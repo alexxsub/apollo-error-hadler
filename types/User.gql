@@ -1,0 +1,23 @@
+type User {
+  _id: ID  
+  username: String! 
+  password: String!  
+  createdDate: String
+
+}
+
+type Token {
+  token: String!
+}
+
+type Query {
+  getCurrentUser: User
+  getUsers: [User]
+  getUsers2: [User]
+  getIP: String
+}
+
+type Mutation {  
+  signIn(username: String!, password: String!): Token
+  signUp(username: String!, password: String!): User  
+}

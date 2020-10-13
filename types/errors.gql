@@ -1,0 +1,8 @@
+type Query {  
+  authError: String
+  readError: String
+  apolloError: String
+}
+type Mutation {
+  userInputError(input: String): String
+}
