@@ -19,7 +19,7 @@ module.exports = {
             throw new UserInputError('User input arguments are invalid', {
               invalidArgs: Object.keys(args),
             })
-          }
+          } else return "Good!"
         },
       }
 }

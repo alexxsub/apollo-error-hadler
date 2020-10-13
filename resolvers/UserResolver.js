@@ -9,6 +9,7 @@ const createToken = (user, secret, expiresIn) => {
 
 module.exports = {
   User: {
+    // sample authorization. Only user with username 'Bond' can see field password
     password: (rec,_,{currentUser}) => {
       
       if (currentUser.username=='Bond') {
@@ -54,7 +55,7 @@ module.exports = {
     },  
   },
   Mutation: {        
-    // auth and generate token
+    // authentication and generates token
     signIn: async (_, { username, password }, { User }) => {
       const user = await User.findOne({ username })
       if (!user) throw new Error('Incorrect username or password')
@@ -62,7 +63,7 @@ module.exports = {
       const isValidPassword = await bcrypt.compare(password, user.password)
       if (!isValidPassword) throw new Error('Incorrect username or password')
 
-      // tokem's lifetime 1 day
+      // token's lifetime 1 day
       return { token: createToken(user, process.env.SECRET, "24hr") };
     },
 

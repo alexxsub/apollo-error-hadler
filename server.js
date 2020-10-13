@@ -23,7 +23,7 @@ mongoose
           useFindAndModify: false,
         }
     )
-    .then(() => console.log(`🎉  Mogo connected ${process.env.MONGO_URI}`))
+    .then(() => console.log(`🎉  Mongo connected ${process.env.MONGO_URI}`))
     .catch((err) => console.error(err))
 
 // Verify JWT Token passed from client
@@ -70,7 +70,7 @@ const server = new ApolloServer({
       return error
   },
     context: async ({ req }) => {
-
+        // list of queries without autentifacation
         const noAuth = ['IntrospectionQuery',
             'signIn',
             'signUp',
@@ -89,7 +89,7 @@ const server = new ApolloServer({
   }
 })
 
-
+// replace code 400 over 401 (correct)
 const contextAuthError = (req, res, next) => {
   const origSend = res.send;
 
@@ -105,6 +105,7 @@ const contextAuthError = (req, res, next) => {
   next()
 }
 
+// some examples express routes 
 const app = express()
 app.use("/api", contextAuthError)
 
