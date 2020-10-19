@@ -62,7 +62,7 @@ const server = new ApolloServer({
       let msg = error.message
       error.message = msg.replace(key, val).trim()
     })    
-    if (!process.env.DEBUG)
+    if (process.env.DEBUG!== 'true')
     {
       if (error.extensions.hasOwnProperty('exception'))
         delete error.extensions.exception
