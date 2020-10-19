@@ -100,25 +100,23 @@ const contextAuthError = (req, res, next) => {
         res.statusCode = 401
       }
     }
-    return origSend.call(res, content);
+    return origSend.call(res, content)
   }
   next()
 }
 
 // some examples express routes 
 const app = express()
-app.use("/api", contextAuthError)
-
-const p = path.join(__dirname, '/front')
+app.use('/api', contextAuthError)
 
 app.get('/', function (req, res) {  
-  res.sendFile(path.join(__dirname + '/front/index.html'))
+  res.sendFile(path.join(__dirname,'front/index.html'))
 })
 app.get('/error', function (req, res) {
   res.send('Nothing here dude, try <a href="/api">api</a>')
 })
 const port = (process.env.PORT || 4000)
-server.applyMiddleware({ app, path: "/api" })
+server.applyMiddleware({ app, path: '/api' })
 
 app.listen({ port }, () =>
   console.log(`🚀  Started at http://localhost:${port}${server.graphqlPath}`)
